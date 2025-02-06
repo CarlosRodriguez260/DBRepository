@@ -1,0 +1,36 @@
+-- Create a table
+create table "Student"(id serial primary key, first_name varchar(20), last_name varchar(20), gpa double precision);
+create table "Student2"(id serial primary key, first_name varchar(20),last_name varchar(20), gpa double precision);
+
+-- Add values to table
+INSERT INTO "Student"(first_name, last_name, gpa)
+VALUES ('Carlos','Rodriguez',3.3),('Evand','Sanchez',3.5),
+       ('Juan','Patarroyo',4.0), ('Juan','Patarroyo',4.0);
+
+INSERT INTO "Student2"(first_name, last_name, gpa)
+VALUES ('Carlos','Rodriguez',3.3),('Jose','Diaz',2.5);
+
+-- Get all students whose GPA > 3.5
+SELECT first_name from "Student"
+WHERE gpa >= 3.5;
+
+--If you want no duplicates, use distinct
+SELECT distinct  first_name from "Student"
+WHERE gpa >= 3.5;
+
+-- Multiple Conditions
+SELECT * from "Student"
+WHERE gpa >= 3.5 AND id > 1;
+
+-- Union Example
+SELECT first_name, last_name from "Student"
+UNION
+SELECT first_name, last_name from "Student2";
+
+-- Difference Example
+SELECT first_name, last_name from "Student"
+EXCEPT
+SELECT first_name, last_name from "Student2";
+
+-- Rename Student2 Table and some of its columns
+SELECT first_name AS fn, last_name AS ln from "Student2" AS "UniverseStudents";
